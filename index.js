@@ -49,11 +49,15 @@ app.listen(port, () => {
 
 async function numberOfJobs (address) {
     //Gather data from site and add to a DOM
+    console.log("Num of jobs functions")
     const dom = await JSDOM.fromURL(address)
+    console.log("Built the DOM")
     //Find total jobs listed from page, is contained in <span class="at-facet-header-total-results">20</span>
     const element = dom.window.document.querySelector('span.at-facet-header-total-results')
+    console.log("Found element")
     try{
         return parseInt(element.innerHTML.replace(/,/g, ''))
+        console.log("Returned job number")
     } catch {
         return 0
     }
