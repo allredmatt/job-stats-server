@@ -11,6 +11,7 @@ const app = express();
 app.use(cors());
 
 app.get("/jobstats", async (req, res) => {
+    console.log("All jobsites accessed")
     const site = `https://www.cwjobs.co.uk/jobs/in-south-east`
     try{
         const result = await numberOfJobs(site)
@@ -19,6 +20,7 @@ app.get("/jobstats", async (req, res) => {
             value: result
         }
         res.status(200).send(data)
+        console.log("Returned: " + data)
     } catch(err) {
         res.status(500).send({error: err})
     }
